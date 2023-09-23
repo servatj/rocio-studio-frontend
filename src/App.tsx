@@ -8,6 +8,7 @@ import Gallery from './pages/Showroom';
 
 function App() {
   const theme = {
+    isMain: true,
     colors: {
       primary: 'turquoise',
       secondary: 'coral'

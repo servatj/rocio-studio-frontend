@@ -32,22 +32,22 @@ const Image = styled.img`
   transition: transform 0.3s ease-in-out;
 `;
 
-const Caption = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  text-align: center;
-  padding: 8px;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+// const Caption = styled.div`
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   background: rgba(0, 0, 0, 0.6);
+//   color: white;
+//   text-align: center;
+//   padding: 8px;
+//   opacity: 0;
+//   transition: opacity 0.3s ease-in-out;
 
-  ${ImageCard}:hover & {
-    opacity: 1;
-  }
-`;
+//   ${ImageCard}:hover & {
+//     opacity: 1;
+//   }
+// `;
 
 const Gallery = ({ images }: { images: ImageGalleryProps[] }) => {
   return (

@@ -1,8 +1,17 @@
 import styled from '@emotion/styled';
 import { Link } from "react-router-dom";
 
+interface HeaderProps {
+  isMain: boolean;
+  // Add other props if needed
+}
+
+interface HeaderContainerProps {
+  isMain: boolean;
+}
+
 // Styled components
-const HeaderContainer = styled.header`
+const HeaderContainer = styled.header<HeaderContainerProps>`
   display: flex;
   align-items: center;
   background-color: ${(props) => (props.isMain ? 'transparent' : 'black')};
@@ -95,7 +104,7 @@ const MenuButton = styled(Link)`
 `;
 
 // Header component
-const Header = ({ isMain }: { isMain: boolean }) => {
+const Header: React.FC<HeaderProps> = ({ isMain }) => {
   return (
     <HeaderContainer isMain={isMain}>
       <Logo>

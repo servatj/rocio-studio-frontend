@@ -35,20 +35,6 @@ const HeroSubtitle = styled.p`
 	margin-bottom: 30px;
 `;
 
-const HeroButton = styled.a`
-	background-color: turquoise;
-	padding: 10px 20px;
-	border-radius: 4px;
-	text-decoration: none;
-	color: #f1c40f;
-	font-weight: bold;
-	transition: background-color 0.3s ease;
-
-	&:hover {
-		background-color: darkturquoise;
-	}
-`;
-
 const SquareContainer = styled.div`
 	display: flex;
 	align-items: left;
@@ -95,11 +81,11 @@ const Square = styled.div`
   }
 `;
 
-const Image = styled.img`
-	width: 150px;
-	object-fit: cover;
-	padding-right: 20px;
-`;
+// const Image = styled.img`
+// 	width: 150px;
+// 	object-fit: cover;
+// 	padding-right: 20px;
+// `;
 
 const Hero = () => {
 	return (

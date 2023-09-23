@@ -53,8 +53,8 @@ const WhatsAppLink = styled.a`
 
 
 const Contact = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    // e.preventDefault();
     // Handle form submission here
   };
 
