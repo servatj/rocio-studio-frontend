@@ -9,6 +9,14 @@ const ContactContainer = styled.div`
   padding: 20px;
 `;
 
+const ProfileImage = styled.img`
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+`;
+
 const ContactForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -62,6 +70,7 @@ const Contact = () => {
     <>
       <Header isMain={false} />
         <ContactContainer>
+        <ProfileImage src="logo.png" alt="Your Name" />
         <ContactForm onSubmit={handleSubmit}>
             <FormField>
             <Label htmlFor="name">Name</Label>

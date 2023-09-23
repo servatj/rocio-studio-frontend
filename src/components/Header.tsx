@@ -122,7 +122,7 @@ const Header: React.FC<HeaderProps> = ({ isMain }) => {
         ) : (
           <Menu>
             <MenuItemWhite>CALL: 58-591-7970</MenuItemWhite>
-            <MenuButton to="/about"><p>Let's talk</p></MenuButton>
+            <MenuButton to="/contact"><p>Let's talk</p></MenuButton>
           </Menu>
         )
       }
