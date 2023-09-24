@@ -121,9 +121,18 @@ const MenuButton = styled(Link)`
 	}
 
 `;
-
+ 
 const MenuButtonResponsive = styled.button`
   display: none;
+
+  margin: 0 10px;
+	text-decoration: none;
+	color: #f1c40f;
+	position: relative;
+	border: 2px solid #f1c40f;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  style: bold;
 
   @media (max-width: 768px) {
     display: block;
@@ -155,7 +164,7 @@ const Header: React.FC<HeaderProps> = ({ isMain }) => {
             </Menu>
           )}
 					<MenuButtonResponsive onClick={toggleMenu}>
-						{menuOpen ? "Close Menu" : "Open Menu"}
+						{menuOpen ? "X" : "☰"}
 					</MenuButtonResponsive>
 				</>
 			) : (
