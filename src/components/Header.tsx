@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface HeaderProps {
 	isMain: boolean;
@@ -11,8 +11,9 @@ interface HeaderContainerProps {
 }
 
 interface MenuProps {
-  menuOpen?: boolean;
-  isMain?: boolean;
+	menuOpen?: boolean;
+	isMain?: boolean;
+  show?: boolean;
 }
 
 // Styled components
@@ -27,11 +28,11 @@ const HeaderContainer = styled.header<HeaderContainerProps>`
 	right: 0;
 	z-index: ${(props) => (props.isMain ? "9999" : "auto")};
 
-  @media (max-width: 768px) {
-    z-index: auto;
-    position: static;
-    background-color: black;
-  }
+	@media (max-width: 768px) {
+		z-index: auto;
+		position: static;
+		background-color: black;
+	}
 `;
 
 const Logo = styled.div`
@@ -48,7 +49,7 @@ const Logo = styled.div`
 	}
 `;
 
-const Menu = styled.nav<MenuProps>`
+const MenuMain = styled.nav<MenuProps>`
   display: flex;
   align-items: center;
 
@@ -60,23 +61,38 @@ const Menu = styled.nav<MenuProps>`
   }
 `;
 
+const Menu = styled.div<MenuProps>`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	background-color: black;
+	position: fixed; // Changed from absolute to fixed
+	top: 0;
+	right: ${(props) => (props.show ? "0" : "-200px")}; // Adjust as needed
+	bottom: 0;
+	width: 200px;
+	transition: right 0.3s ease; // Added transition
+	z-index: 1000; // Ensure it appears above other elements
+`;
+
 const MenuItem = styled(Link)`
 	margin: 0 10px;
 	text-decoration: none;
-	color: #f1c40f;
+  color: #f1c40f;
 	position: relative;
+  margin-top: 10px;
+  padding: 10px;
 
 	&:not(:last-of-type)::after {
-		content: "|";
 		position: absolute;
 		right: -10px;
 		top: 50%;
 		transform: translateY(-50%);
 	}
 
-	&:hover {
-		color: white;
-	}
+  &:hover {
+    background-color: #f1f1f1;
+  }
 `;
 
 const MenuItemWhite = styled.p`
@@ -105,7 +121,6 @@ const MenuButton = styled(Link)`
 	border: 2px solid #f1c40f;
 
 	&:not(:last-of-type)::after {
-		content: "|";
 		position: absolute;
 		right: -10px;
 		top: 50%;
@@ -119,33 +134,50 @@ const MenuButton = styled(Link)`
 	p {
 		padding: 10px;
 	}
-
 `;
- 
-const MenuButtonResponsive = styled.button`
-  display: none;
 
-  margin: 0 10px;
+const MenuButtonResponsive = styled.button`
+	display: none;
+
+	margin: 0 10px;
 	text-decoration: none;
 	color: #f1c40f;
 	position: relative;
 	border: 2px solid #f1c40f;
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  style: bold;
+	padding: 10px 20px;
+	font-size: 1.2rem;
+	style: bold;
 
-  @media (max-width: 768px) {
-    display: block;
-  }
+	@media (max-width: 768px) {
+		display: block;
+	}
 `;
 
 // Header component
 const Header: React.FC<HeaderProps> = ({ isMain }) => {
 	const [menuOpen, setMenuOpen] = useState(false);
 
-	const toggleMenu = () => {
+	const toggleMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
 		setMenuOpen(!menuOpen);
+    console.log(menuOpen);
 	};
+
+  const closeMenu = (e: MouseEvent) => {
+    if ((e.target as Element).closest('#menu')) return;  // Do nothing if clicking inside the menu
+    setMenuOpen(false);
+  };
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.addEventListener('click', closeMenu);
+    } else {
+      document.removeEventListener('click', closeMenu);
+    }
+    return () => {
+      document.removeEventListener('click', closeMenu);
+    };
+  }, [menuOpen]);
 
 	return (
 		<HeaderContainer isMain={isMain}>
@@ -155,25 +187,23 @@ const Header: React.FC<HeaderProps> = ({ isMain }) => {
 			</Logo>
 			{!isMain ? (
 				<>
-          {menuOpen && (
-            <Menu>
-              <MenuItem to="/gallery">Gallery</MenuItem>
-              <MenuItem to="/packages">Packages</MenuItem>
-              <MenuItem to="/about">About</MenuItem>
-              <MenuItem to="/contact">Contact</MenuItem>
-            </Menu>
-          )}
-					<MenuButtonResponsive onClick={toggleMenu}>
+					<Menu show={menuOpen} id="menu">
+						<MenuItem to="/gallery">Gallery</MenuItem>
+						<MenuItem to="/packages">Packages</MenuItem>
+						<MenuItem to="/about">About</MenuItem>
+						<MenuItem to="/contact">Contact</MenuItem>
+					</Menu>
+					<MenuButtonResponsive onClick={(e) => toggleMenu(e)}>
 						{menuOpen ? "X" : "☰"}
 					</MenuButtonResponsive>
 				</>
 			) : (
-				<Menu>
+				<MenuMain>
 					<MenuItemWhite>CALL: 58-591-7970</MenuItemWhite>
 					<MenuButton to="/contact">
 						<p>Let's talk</p>
 					</MenuButton>
-				</Menu>
+				</MenuMain>
 			)}
 		</HeaderContainer>
 	);
