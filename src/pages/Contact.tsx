@@ -46,7 +46,7 @@ const Textarea = styled.textarea`
 
 const SubmitButton = styled.button`
   padding: 10px 20px;
-  background-color: turquoise;
+  background-color: black;
   color: white;
   border: none;
   cursor: pointer;

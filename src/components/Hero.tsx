@@ -24,15 +24,32 @@ const HeroContainer = styled.section`
 		filter: brightness(0.6); // Lower values darken the image
 		z-index: -1; // Place it behind the content
 	}
+
+	@media (max-width: 768px) {
+    text-align: left;
+		position: relative;
+		height: auto;
+		z-index: auto;
+    padding: 20px;
+  }
 `;
+
 const HeroTitle = styled.h1`
 	font-size: 4rem;
 	margin-bottom: 20px;
+
+	@media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const HeroSubtitle = styled.p`
 	font-size: 1.5rem;
 	margin-bottom: 30px;
+
+	@media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const SquareContainer = styled.div`
@@ -40,6 +57,11 @@ const SquareContainer = styled.div`
 	align-items: left;
   margin-top: 20px;
 	flex-wrap: wrap;
+
+	@media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const SquareContainerText = styled.div`
