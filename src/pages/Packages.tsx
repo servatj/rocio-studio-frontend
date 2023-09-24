@@ -7,6 +7,12 @@ const PackagesContainer = styled.div`
 	justify-content: center;
 	gap: 20px;
 	padding: 20px;
+
+	@media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
 `;
 
 const PackageCard = styled.div`
@@ -16,6 +22,11 @@ const PackageCard = styled.div`
 	border-radius: 8px;
 	text-align: center;
 	background-color: black;
+
+	@media (max-width: 768px) {
+    width: 90%;
+    margin: 10px 0;
+  }
 `;
 
 const PackageTitle = styled.h3`
