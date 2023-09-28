@@ -8,6 +8,7 @@ interface HeaderProps {
 
 interface HeaderContainerProps {
 	isMain: boolean;
+	isFixed?: boolean;
 }
 
 interface MenuProps {
@@ -22,7 +23,7 @@ const HeaderContainer = styled.header<HeaderContainerProps>`
 	align-items: center;
 	background-color: ${(props) => (props.isMain ? "transparent" : "black")};
 	padding: 10px 20px;
-	position: ${(props) => (props.isMain ? "fixed" : "static")};
+	position: ${(props) => (props.isMain || !props.isFixed ? "fixed" : "static")};
 	top: 0;
 	left: 0;
 	right: 0;
@@ -30,7 +31,7 @@ const HeaderContainer = styled.header<HeaderContainerProps>`
 
 	@media (max-width: 768px) {
 		z-index: auto;
-		position: static;
+		position:  static;
 		background-color: black;
 	}
 `;
@@ -155,6 +156,8 @@ const MenuButtonResponsive = styled.button`
 
 // Header component
 const Header: React.FC<HeaderProps> = ({ isMain }) => {
+	const [scrollY, setScrollY] = useState(0);
+	const [isFixed, setIsFixed] = useState(true);
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const toggleMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -179,8 +182,28 @@ const Header: React.FC<HeaderProps> = ({ isMain }) => {
     };
   }, [menuOpen]);
 
+	useEffect(() => {
+		const handleScroll = () => {
+			setScrollY(window.scrollY);
+		};
+	
+		window.addEventListener('scroll', handleScroll);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+	
+	useEffect(() => {
+		if (scrollY > 400) {
+			setIsFixed(false);
+		} else {
+			setIsFixed(true);
+		}
+	}, [scrollY]);
+	
+
 	return (
-		<HeaderContainer isMain={isMain}>
+		<HeaderContainer isMain={isMain} isFixed={isFixed}>
 			<Logo>
 				<img src="/logo.png" alt="rociologo" width="60" />
 				<MenuItem to="/">ROCIO STUDIO 🇦🇪 </MenuItem>

@@ -1,6 +1,8 @@
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import StrongPointsSection from "../components/StrongPointsSection";
+import ImageSection from "../components/ImageSection";
+import Footer from "../components/Footer";
 
 function Home() {
   return (
@@ -8,6 +10,8 @@ function Home() {
       <Header isMain={true}/>
       <Hero />
       <StrongPointsSection />
+      <ImageSection />
+      <Footer />
     </>
   );
 }
