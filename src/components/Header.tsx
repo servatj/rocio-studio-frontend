@@ -96,6 +96,22 @@ const MenuItem = styled(Link)`
   }
 `;
 
+const BrandLink = styled(Link)`
+	margin: 0 10px;
+	text-decoration: none;
+	color: #f1c40f;
+	position: relative;
+	margin-top: 10px;
+	padding: 10px;
+
+	&:not(:last-of-type)::after {
+		position: absolute;
+		right: -10px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+`;
+
 const MenuItemWhite = styled.p`
 	margin: 0 10px;
 	text-decoration: none;
@@ -109,9 +125,6 @@ const MenuItemWhite = styled.p`
 		transform: translateY(-50%);
 	}
 
-	&:hover {
-		color: white;
-	}
 `;
 
 const MenuButton = styled(Link)`
@@ -206,7 +219,7 @@ const Header: React.FC<HeaderProps> = ({ isMain }) => {
 		<HeaderContainer isMain={isMain} isFixed={isFixed}>
 			<Logo>
 				<img src="/logo.png" alt="rociologo" width="60" />
-				<MenuItem to="/">ROCIO STUDIO 🇦🇪 </MenuItem>
+				<BrandLink to="/">ROCIO STUDIO 🇦🇪 </BrandLink>
 			</Logo>
 			{!isMain ? (
 				<>
