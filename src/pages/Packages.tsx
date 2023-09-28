@@ -58,12 +58,12 @@ const Packages = () => {
 	const packages = [
 		{
 			title: "Basic",
-			price: "100 AED",
+			price: "400 AED",
 			features: ["1-hour session", "10 edited photos", "Online gallery"],
 		},
 		{
 			title: "Standard",
-			price: "200 AED",
+			price: "600 AED",
 			features: [
 				"2-hour session",
 				"20 edited photos",
@@ -73,7 +73,7 @@ const Packages = () => {
 		},
 		{
 			title: "Premium",
-			price: "500 AED",
+			price: "1000 AED",
 			features: [
 				"4-hour session",
 				"40 edited photos",
