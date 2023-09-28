@@ -151,7 +151,7 @@ const MenuButton = styled(Link)`
 `;
 
 const MenuButtonResponsive = styled.button`
-	display: none;
+	display: block;
 
 	margin: 0 10px;
 	text-decoration: none;
