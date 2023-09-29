@@ -138,7 +138,7 @@ const Contact = () => {
         {loading && <h1>Loading...</h1>}
         {isEmailSent && <h1>Email sent successfully! We will shortly contact you! </h1>}
 				<WhatsAppLink
-					href="https://wa.me/your-number"
+					href="https://wa.me/+971585917970"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
