@@ -5,11 +5,13 @@ import { useWindowScroll } from 'react-use';
 const ImageSectionContainer = styled.section`
   position: relative;
   height: 100vh; // Adjust the height as needed
-  overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: black;
+
+  flex-direction: column;
+  justify-content: center;
+   
+  row-gap: 30px;
 
   @media (max-width: 768px) {
     height: 50vh; // Adjust the height as needed
@@ -17,7 +19,7 @@ const ImageSectionContainer = styled.section`
 `;
 
 const AnimatedImage = styled.img<{ animate: boolean }>`
-  position: absolute;
+  position: relative;
   width: 600px;
   left: ${(props) => (props.animate ? '50%' : '-50%')};
   transform: translateX(-50%);
@@ -25,16 +27,29 @@ const AnimatedImage = styled.img<{ animate: boolean }>`
   transition: left 1s ease-in-out; // Adjust the duration and easing function as needed
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5); // Set the color of the overlay
 
+  order: 1;
+
   @media (max-width: 768px) {
-    width: 90%; // On mobile, each item takes up almost the full width
+    width: 80%; // On mobile, each item takes up almost the full width
     margin: 10px 0;
   }
 `;
 
-const OverlayText = styled.h2`
-  position: absolute;
-  color: white; // Set the text color to white (or any color that contrasts with your image)
-  z-index: 2; // Place the text above the image
+const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2rem;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
+
+const HeaderText = styled.h1`
+  color: white;
+  color: #f1c40f;
 `;
 
 const ImageSection = () => {
@@ -50,8 +65,10 @@ const ImageSection = () => {
   return (
     <>
       <ImageSectionContainer>
+        <HeaderContainer> 
+          <HeaderText>We Want to Be in Your Best Moments</HeaderText>
+        </HeaderContainer>
         <AnimatedImage src="celebration.jpg" alt="Description of image" animate={animate} />
-        <OverlayText>We Want to Be in Your Best Moments</OverlayText>
       </ImageSectionContainer>
     </>
   );
