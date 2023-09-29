@@ -150,8 +150,8 @@ const MenuButton = styled(Link)`
 	}
 `;
 
-const MenuButtonResponsive = styled.button`
-	display: block;
+const MenuButtonResponsive = styled.button<MenuProps>`
+	display: ${ (props) => (props.isMain ?  'none' : 'block') };
 
 	margin: 0 10px;
 	text-decoration: none;
@@ -229,7 +229,7 @@ const Header: React.FC<HeaderProps> = ({ isMain }) => {
 						<MenuItem to="/about">About</MenuItem>
 						<MenuItem to="/contact">Contact</MenuItem>
 					</Menu>
-					<MenuButtonResponsive onClick={(e) => toggleMenu(e)}>
+					<MenuButtonResponsive isMain={isMain} onClick={(e) => toggleMenu(e)}>
 						{menuOpen ? "X" : "☰"}
 					</MenuButtonResponsive>
 				</>

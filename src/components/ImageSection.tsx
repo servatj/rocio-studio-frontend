@@ -10,6 +10,10 @@ const ImageSectionContainer = styled.section`
   align-items: center;
   justify-content: center;
   background-color: black;
+
+  @media (max-width: 768px) {
+    height: 50vh; // Adjust the height as needed
+  }
 `;
 
 const AnimatedImage = styled.img<{ animate: boolean }>`
@@ -20,6 +24,11 @@ const AnimatedImage = styled.img<{ animate: boolean }>`
   border: 5px solid #f1c40f;
   transition: left 1s ease-in-out; // Adjust the duration and easing function as needed
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5); // Set the color of the overlay
+
+  @media (max-width: 768px) {
+    width: 90%; // On mobile, each item takes up almost the full width
+    margin: 10px 0;
+  }
 `;
 
 const OverlayText = styled.h2`

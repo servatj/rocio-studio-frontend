@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import Header from "../components/Header";
 import styled from '@emotion/styled';
 
@@ -61,10 +63,33 @@ const WhatsAppLink = styled.a`
 
 
 const Contact = () => {
-  const handleSubmit = () => {
-    // e.preventDefault();
-    // Handle form submission here
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Create the email payload
+    const payload = {
+      name,
+      email,
+      message,
+    };
+
+    console.log(payload);
+
+    // Send the email
+    emailjs.send('service_q8drti9', 'template_ru3ezoo', payload, 'h8tltMS0wcVIpGuN3')
+      .then(() => {
+        // Email sent successfully
+      })
+      .catch((error: Error) => {
+        // Something went wrong
+        console.error(error);
+      });
   };
+
 
   return (
     <>
@@ -74,15 +99,15 @@ const Contact = () => {
         <ContactForm onSubmit={handleSubmit}>
             <FormField>
             <Label htmlFor="name">Name</Label>
-            <Input type="text" id="name" name="name" required />
+            <Input type="text" id="name" name="name" required onChange={(e) => setName(e.target.value)}/>
             </FormField>
             <FormField>
             <Label htmlFor="email">Email</Label>
-            <Input type="email" id="email" name="email" required />
+            <Input type="email" id="email" name="email" required  onChange={(e) => setEmail(e.target.value)}/>
             </FormField>
             <FormField>
             <Label htmlFor="message">Message</Label>
-            <Textarea id="message" name="message" required />
+            <Textarea id="message" name="message" required onChange={(e) => setMessage(e.target.value)} />
             </FormField>
             <SubmitButton type="submit">Send</SubmitButton>
         </ContactForm>
