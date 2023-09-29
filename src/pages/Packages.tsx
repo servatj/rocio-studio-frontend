@@ -1,5 +1,7 @@
 import Header from "../components/Header";
 import Package from "../components/Package";
+import Footer from "../components/Footer";
+import { ContentWrap, Container } from "../components/ContentWrap";
 
 const Packages = () => {
 	// Sample package data
@@ -35,7 +37,17 @@ const Packages = () => {
 	return (
 		<>
 			<Header isMain={false} />
-			<Package packages={packages} />
+			<Container>
+				<ContentWrap>
+					<h1>Packages</h1>
+					<p>
+						We offer a variety of packages to suit your needs. If you have any
+						questions, please feel free to contact us.
+					</p>
+					<Package packages={packages} />
+				</ContentWrap>
+			</Container>
+			<Footer />
 		</>
 	);
 };

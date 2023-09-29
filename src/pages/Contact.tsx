@@ -2,6 +2,7 @@ import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import Header from "../components/Header";
 import styled from "@emotion/styled";
+import Footer from "../components/Footer";
 
 // Styled components
 const ContactContainer = styled.div`
@@ -144,6 +145,7 @@ const Contact = () => {
 					Contact me on WhatsApp
 				</WhatsAppLink>
 			</ContactContainer>
+      <Footer />
 		</>
 	);
 };

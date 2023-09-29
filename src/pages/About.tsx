@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import styled from '@emotion/styled';
 
@@ -7,6 +8,7 @@ const AboutContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  min-height: 100vh;
 `;
 
 const ProfileImage = styled.img`
@@ -59,6 +61,7 @@ const About = () => {
           memories for everyone involved.
        </AboutText>
       </AboutContainer>
+      <Footer />
     </>
   );
 };

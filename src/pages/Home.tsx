@@ -6,8 +6,7 @@ import Package from "../components/Package";
 import Footer from "../components/Footer";
 
 function Home() {
-
-  const packages = [
+	const packages = [
 		{
 			title: "Basic",
 			price: "400 AED",
@@ -36,16 +35,16 @@ function Home() {
 		},
 	];
 
-  return (
-    <>
-      <Header isMain={true}/>
-      <Hero />
-      <StrongPointsSection />
-      <Package packages={packages} />
-      <ImageSection />
-      <Footer />
-    </>
-  );
+	return (
+		<>
+			<Header isMain={true} />
+			<Hero />
+			<StrongPointsSection />
+			<Package packages={packages} />
+			<ImageSection />
+			<Footer />
+		</>
+	);
 }
 
 export default Home;
